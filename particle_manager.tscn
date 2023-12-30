@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm7flux3bvmps"]
+
+[ext_resource type="Script" path="res://ParticleManager.gd" id="1_juw4l"]
+
+[node name="ParticleManager" type="Node2D"]
+z_index = -1
+script = ExtResource("1_juw4l")

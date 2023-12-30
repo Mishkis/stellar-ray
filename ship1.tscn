@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=13 format=3 uid="uid://k074hfbpr7pq"]
 
 [ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
 [ext_resource type="Texture2D" uid="uid://bm5o23mk2h1ox" path="res://Art/Ship1.png" id="1_cyhea"]
+[ext_resource type="PackedScene" uid="uid://dm7flux3bvmps" path="res://particle_manager.tscn" id="2_2ux3v"]
 
 [sub_resource type="Curve" id="Curve_sgp2b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -53,24 +54,30 @@ alpha_curve = SubResource("CurveTexture_pkqki")
 hue_variation_max = 0.2
 
 [node name="Ship" type="CharacterBody2D"]
+position = Vector2(571, 316)
 scale = Vector2(4, 4)
 metadata/_edit_group_ = true
 
-[node name="Ship Sprite" type="Sprite2D" parent="."]
+[node name="ShipSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_cyhea")
 
-[node name="Particle Manager" type="Node2D" parent="."]
-z_index = -1
+[node name="ParticleManager" parent="." node_paths=PackedStringArray("left_thrusters", "right_thrusters") instance=ExtResource("2_2ux3v")]
+left_thrusters = [NodePath("LeftThruster")]
+right_thrusters = [NodePath("RightThruster")]
+rotation_range = 1
+move_speed = 2
 
-[node name="RightThruster" type="GPUParticles2D" parent="Particle Manager"]
-position = Vector2(3.5, 5)
+[node name="LeftThruster" type="GPUParticles2D" parent="ParticleManager"]
+position = Vector2(-3.5, 5)
+emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
 lifetime = 3.0
 
-[node name="LeftThruster" type="GPUParticles2D" parent="Particle Manager"]
-position = Vector2(-3.5, 5)
+[node name="RightThruster" type="GPUParticles2D" parent="ParticleManager"]
+position = Vector2(3.5, 5)
+emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
