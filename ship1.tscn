@@ -1,9 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=12 format=3 uid="uid://k074hfbpr7pq"]
 
+[ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
 [ext_resource type="Texture2D" uid="uid://bm5o23mk2h1ox" path="res://Art/Ship1.png" id="1_cyhea"]
+
+[sub_resource type="Curve" id="Curve_sgp2b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pkqki"]
+curve = SubResource("Curve_sgp2b")
+
+[sub_resource type="Curve" id="Curve_wk0m2"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4xcl3"]
+curve = SubResource("Curve_wk0m2")
+
+[sub_resource type="Curve" id="Curve_tg7g0"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.206667, 10.989), 0.0, 0.0, 0, 0, Vector2(0.786667, 16.4835), 0.0, 0.0, 0, 0, Vector2(0.926667, 54.9451), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jkxg2"]
+curve = SubResource("Curve_tg7g0")
+
+[sub_resource type="Curve" id="Curve_5c42v"]
+max_value = 5.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.76, 2.14286), 5.4945, 5.4945, 0, 0, Vector2(1, 0.10989), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eqde1"]
+curve = SubResource("Curve_5c42v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wcsmv"]
+particle_flag_disable_z = true
+angle_max = 100.0
+angle_curve = SubResource("CurveTexture_4xcl3")
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 30.0
+damping_min = 4.0
+damping_max = 4.0
+damping_curve = SubResource("CurveTexture_jkxg2")
+scale_curve = SubResource("CurveTexture_eqde1")
+color = Color(0.956863, 0.364706, 0.454902, 1)
+alpha_curve = SubResource("CurveTexture_pkqki")
+hue_variation_max = 0.2
 
 [node name="Ship" type="CharacterBody2D"]
 scale = Vector2(4, 4)
+metadata/_edit_group_ = true
 
 [node name="Ship Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_cyhea")
+
+[node name="Particle Manager" type="Node2D" parent="."]
+z_index = -1
+
+[node name="RightThruster" type="GPUParticles2D" parent="Particle Manager"]
+position = Vector2(3.5, 5)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_wcsmv")
+texture = ExtResource("1_7bk6h")
+lifetime = 3.0
+
+[node name="LeftThruster" type="GPUParticles2D" parent="Particle Manager"]
+position = Vector2(-3.5, 5)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_wcsmv")
+texture = ExtResource("1_7bk6h")
+lifetime = 3.0
