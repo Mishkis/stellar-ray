@@ -55,12 +55,11 @@ alpha_curve = SubResource("CurveTexture_pkqki")
 hue_variation_max = 0.2
 
 [node name="Ship" type="CharacterBody2D"]
-position = Vector2(571, 316)
 scale = Vector2(4, 4)
 script = ExtResource("1_813mn")
-speed = 400.0
+speed = 600.0
 rotation_speed = 5.0
-distance = 200.0
+hard_stop_distance = 30.0
 metadata/_edit_group_ = true
 
 [node name="ShipSprite" type="Sprite2D" parent="."]

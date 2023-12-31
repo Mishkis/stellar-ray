@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float
 @export var rotation_speed: float
-@export var distance: float
+@export var hard_stop_distance: float
 var _time: float
 
 
@@ -13,8 +13,10 @@ func _physics_process(delta: float) -> void:
 	$ParticleManager.thruster_angle(rotation, target_angle)
 	rotation = lerp_angle(rotation, target_angle, rotation_speed * delta)
 	
-	var stop_distance = distance * clamp(_time, 0.1, 1)
-	var stop = abs(mouse_distance.x) <= stop_distance and abs(mouse_distance.y) <= stop_distance
+	var current_speed: float = lerp(0.0, speed, _time)
+	var distance: float = current_speed / 2 + 15
+	var hard_stop: bool = abs(mouse_distance.x) <= hard_stop_distance and abs(mouse_distance.y) <= hard_stop_distance
+	var stop: bool = sqrt(mouse_distance.x**2 + mouse_distance.y**2) - distance < 0 or hard_stop
 	
 	if Input.is_mouse_button_pressed(1) and not stop:
 		$ParticleManager.thruster_move()
@@ -25,5 +27,5 @@ func _physics_process(delta: float) -> void:
 	
 	_time = clamp(_time, 0, 1)
 	
-	velocity = lerp(Vector2.ZERO, Vector2(speed, 0).rotated(rotation), _time)
+	velocity = Vector2(current_speed, 0).rotated(rotation)
 	move_and_slide()
