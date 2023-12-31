@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=14 format=3 uid="uid://k074hfbpr7pq"]
 
 [ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
-[ext_resource type="Texture2D" uid="uid://bm5o23mk2h1ox" path="res://Art/Ship1.png" id="1_cyhea"]
+[ext_resource type="Script" path="res://ship1.gd" id="1_813mn"]
+[ext_resource type="Texture2D" uid="uid://dhf0gyvemcx18" path="res://Art/Ship1.png" id="1_cyhea"]
 [ext_resource type="PackedScene" uid="uid://dm7flux3bvmps" path="res://particle_manager.tscn" id="2_2ux3v"]
 
 [sub_resource type="Curve" id="Curve_sgp2b"]
@@ -56,6 +57,9 @@ hue_variation_max = 0.2
 [node name="Ship" type="CharacterBody2D"]
 position = Vector2(571, 316)
 scale = Vector2(4, 4)
+script = ExtResource("1_813mn")
+speed = 400.0
+rotation_speed = 5.0
 metadata/_edit_group_ = true
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
@@ -68,7 +72,8 @@ rotation_range = 1
 move_speed = 2
 
 [node name="LeftThruster" type="GPUParticles2D" parent="ParticleManager"]
-position = Vector2(-3.5, 5)
+position = Vector2(-4.5, -3.5)
+rotation = 1.5708
 emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
@@ -76,7 +81,8 @@ texture = ExtResource("1_7bk6h")
 lifetime = 3.0
 
 [node name="RightThruster" type="GPUParticles2D" parent="ParticleManager"]
-position = Vector2(3.5, 5)
+position = Vector2(-4.5, 3.5)
+rotation = 1.5708
 emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
