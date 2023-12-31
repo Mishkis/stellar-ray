@@ -60,6 +60,7 @@ scale = Vector2(4, 4)
 script = ExtResource("1_813mn")
 speed = 400.0
 rotation_speed = 5.0
+distance = 200.0
 metadata/_edit_group_ = true
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
@@ -68,8 +69,6 @@ texture = ExtResource("1_cyhea")
 [node name="ParticleManager" parent="." node_paths=PackedStringArray("left_thrusters", "right_thrusters") instance=ExtResource("2_2ux3v")]
 left_thrusters = [NodePath("LeftThruster")]
 right_thrusters = [NodePath("RightThruster")]
-rotation_range = 1
-move_speed = 2
 
 [node name="LeftThruster" type="GPUParticles2D" parent="ParticleManager"]
 position = Vector2(-4.5, -3.5)
@@ -79,6 +78,7 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
 lifetime = 3.0
+speed_scale = 2.0
 
 [node name="RightThruster" type="GPUParticles2D" parent="ParticleManager"]
 position = Vector2(-4.5, 3.5)
@@ -88,3 +88,4 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
 lifetime = 3.0
+speed_scale = 2.0

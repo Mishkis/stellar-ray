@@ -2,17 +2,21 @@ extends CharacterBody2D
 
 @export var speed: float
 @export var rotation_speed: float
+@export var distance: float
 var _time: float
 
 
 func _physics_process(delta: float) -> void:
-	var mouse_pos: Vector2 = get_global_mouse_position() - global_position
-	var target_angle: float = mouse_pos.angle()
+	var mouse_distance: Vector2 = get_global_mouse_position() - global_position
+	var target_angle: float = mouse_distance.angle()
 	
 	$ParticleManager.thruster_angle(rotation, target_angle)
 	rotation = lerp_angle(rotation, target_angle, rotation_speed * delta)
 	
-	if Input.is_mouse_button_pressed(1):
+	var stop_distance = distance * clamp(_time, 0.1, 1)
+	var stop = abs(mouse_distance.x) <= stop_distance and abs(mouse_distance.y) <= stop_distance
+	
+	if Input.is_mouse_button_pressed(1) and not stop:
 		$ParticleManager.thruster_move()
 		_time += delta
 	else:
