@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj4lmhq8xggck"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_manager.gd" id="1_pqokx"]
+
+[node name="ProjectileManager" type="Node2D"]
+script = ExtResource("1_pqokx")
+spawn_rotation_range = 0.15708
+spawn_count = 1
