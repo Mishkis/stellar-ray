@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://34hygk8ll80c"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_class.gd" id="1_472jk"]
+[ext_resource type="Texture2D" uid="uid://ru5fghj5uu5c" path="res://Art/Ship1Projectile.png" id="1_tfy8y"]
+[ext_resource type="PackedScene" uid="uid://g8ticbfowvxm" path="res://Scenes/Components/destroy_off_screen_component.tscn" id="3_n1l5o"]
+
+[node name="Ship1Projectile" type="CharacterBody2D"]
+script = ExtResource("1_472jk")
+
+[node name="Ship1Projectile" type="Sprite2D" parent="."]
+texture = ExtResource("1_tfy8y")
+
+[node name="DestroyOffScreenComponent" parent="." instance=ExtResource("3_n1l5o")]

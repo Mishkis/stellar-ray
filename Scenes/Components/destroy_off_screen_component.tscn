@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g8ticbfowvxm"]
+
+[ext_resource type="Script" path="res://Scripts/destroy_off_screen_component.gd" id="1_t4vkv"]
+
+[node name="DestroyOffScreenComponent" type="VisibleOnScreenNotifier2D"]
+script = ExtResource("1_t4vkv")
+
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

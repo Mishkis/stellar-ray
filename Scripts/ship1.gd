@@ -6,6 +6,11 @@ extends CharacterBody2D
 var _time: float
 
 
+func _process(delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		$CooldownComponent.attack()
+
+
 func _physics_process(delta: float) -> void:
 	# Get mouse mouse distance and angle to mouse
 	var mouse_distance: Vector2 = get_global_mouse_position() - global_position

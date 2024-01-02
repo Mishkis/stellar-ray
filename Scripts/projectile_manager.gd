@@ -26,6 +26,9 @@ func fire() -> void:
 				var start_rotation_point: float = spawn_rotation_range / 2.0
 				var rotation_added: float = spawn_rotation_range / (spawn_count - 1)
 				projectile_rotation += rotation_added * i - start_rotation_point
+				
+				if i >= spawn_count / 2:
+					projectile_instance.scale.y *= -1
 			
 			projectile_instance.position = projectile_position
 			projectile_instance.rotation = projectile_rotation
