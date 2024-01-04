@@ -1,12 +1,13 @@
 extends Timer
 
-@export var projectile_manager: Node2D
+signal off_cooldown
+
 var on_cooldown: bool = false
 
 
-func attack() -> void:
+func activate() -> void:
 	if not on_cooldown:
-		projectile_manager.fire()
+		off_cooldown.emit()
 		on_cooldown = true
 		start()
 

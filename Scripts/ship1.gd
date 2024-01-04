@@ -6,9 +6,9 @@ extends CharacterBody2D
 var _time: float
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		$CooldownComponent.attack()
+		$AnimatedSpriteComponent.attack()
 
 
 func _physics_process(delta: float) -> void:
@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	var current_speed: float = lerp(0.0, speed, _time)
 	# Then it calculates the distance you would travel if you started de-accelerating.
 	# Multiplied by _time to make it proportional to the de-acceleration of time and +15 makes it smoother.
-	var distance: float = current_speed / 2 * _time + 15
+	var distance: float = current_speed / 2 * _time + 50
 	# Hard stop distance is just the distance from the ship at which point it will automatically activate.
 	var hard_stop: bool = abs(mouse_distance.x) <= hard_stop_distance and abs(mouse_distance.y) <= hard_stop_distance
 	# Checks if the distance that can be traveled is less than target distance to mouse, if so stop.

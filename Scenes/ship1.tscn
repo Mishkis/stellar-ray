@@ -1,12 +1,96 @@
-[gd_scene load_steps=17 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=35 format=3 uid="uid://k074hfbpr7pq"]
 
 [ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
 [ext_resource type="Script" path="res://Scripts/ship1.gd" id="1_813mn"]
 [ext_resource type="Texture2D" uid="uid://t2af8jfea2bl" path="res://Art/Ship1.png" id="1_cyhea"]
 [ext_resource type="PackedScene" uid="uid://dm7flux3bvmps" path="res://Scenes/Components/particle_manager.tscn" id="2_2ux3v"]
+[ext_resource type="PackedScene" uid="uid://bg0jrutscglq8" path="res://Scenes/Components/animated_sprite_component.tscn" id="2_cxrkf"]
+[ext_resource type="Texture2D" uid="uid://d1dgbeb0abc2o" path="res://Art/Ship1Reload/Ship1Reload1.png" id="3_bnoaq"]
+[ext_resource type="Texture2D" uid="uid://dknwbirljhhmt" path="res://Art/Ship1Reload/Ship1Reload2.png" id="4_u4lca"]
+[ext_resource type="Texture2D" uid="uid://bmk07tx84i18p" path="res://Art/Ship1Reload/Ship1Reload3.png" id="5_bf7el"]
 [ext_resource type="PackedScene" uid="uid://dj4lmhq8xggck" path="res://Scenes/Components/projectile_manager.tscn" id="5_qn44e"]
 [ext_resource type="PackedScene" uid="uid://34hygk8ll80c" path="res://Scenes/ship_1_projectile.tscn" id="6_dl16m"]
-[ext_resource type="PackedScene" uid="uid://pmhp5wfvp6uq" path="res://Scenes/Components/cooldown_component.tscn" id="7_rxt25"]
+[ext_resource type="Texture2D" uid="uid://dyvwrfsavxduw" path="res://Art/Ship1Reload/Ship1Reload4.png" id="6_sqvhq"]
+[ext_resource type="Texture2D" uid="uid://bdpojrfkjd173" path="res://Art/Ship1Reload/Ship1Reload5.png" id="7_k2yue"]
+[ext_resource type="Texture2D" uid="uid://c0rwn0x55b7o7" path="res://Art/Ship1Reload/Ship1Reload6.png" id="8_b81a8"]
+[ext_resource type="Texture2D" uid="uid://b4axoqrkrk2rr" path="res://Art/Ship1Reload/Ship1Reload7.png" id="9_dpp7e"]
+[ext_resource type="Texture2D" uid="uid://dhpswgddnhlhd" path="res://Art/Ship1Reload/Ship1Reload8.png" id="10_7lklo"]
+[ext_resource type="Texture2D" uid="uid://ud0ec88cd8d5" path="res://Art/Ship1Reload/Ship1Reload9.png" id="11_oukn1"]
+[ext_resource type="Texture2D" uid="uid://c8xoprsoarttf" path="res://Art/Ship1Reload/Ship1Reload10.png" id="12_yowsh"]
+[ext_resource type="Texture2D" uid="uid://3de3c7anfhy1" path="res://Art/Ship1Reload/Ship1Reload11.png" id="13_2qo1c"]
+[ext_resource type="Texture2D" uid="uid://4om3inqeqjt4" path="res://Art/Ship1Reload/Ship1Reload12.png" id="14_6n3fo"]
+[ext_resource type="Texture2D" uid="uid://j1d3gnchffro" path="res://Art/Ship1Reload/Ship1Reload13.png" id="15_k6w5u"]
+[ext_resource type="Texture2D" uid="uid://b38e64qwvqdg5" path="res://Art/Ship1Reload/Ship1Reload14.png" id="16_3cmjh"]
+[ext_resource type="Texture2D" uid="uid://cpbxfxck15yro" path="res://Art/Ship1Reload/Ship1Reload15.png" id="17_0xghf"]
+[ext_resource type="Texture2D" uid="uid://ct5ka3876yqe2" path="res://Art/Ship1Reload/Ship1Reload16.png" id="18_jpoku"]
+[ext_resource type="Texture2D" uid="uid://behtx1osohrcp" path="res://Art/Ship1Reload/Ship1Reload17.png" id="19_q1eos"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uoiim"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cyhea")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bnoaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u4lca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bf7el")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sqvhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k2yue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b81a8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dpp7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7lklo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_oukn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yowsh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2qo1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6n3fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_k6w5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3cmjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0xghf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jpoku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_q1eos")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 15.0
+}]
 
 [sub_resource type="Curve" id="Curve_sgp2b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -41,6 +125,8 @@ curve = SubResource("Curve_5c42v")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wcsmv"]
 particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 1, 1)
 angle_max = 100.0
 angle_curve = SubResource("CurveTexture_4xcl3")
 direction = Vector3(0, 1, 0)
@@ -58,35 +144,39 @@ alpha_curve = SubResource("CurveTexture_pkqki")
 hue_variation_max = 0.2
 
 [node name="Ship" type="CharacterBody2D"]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 script = ExtResource("1_813mn")
 speed = 600.0
 rotation_speed = 5.0
-hard_stop_distance = 17.0
+hard_stop_distance = 40.0
 metadata/_edit_group_ = true
 
-[node name="ShipSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_cyhea")
+[node name="AnimatedSpriteComponent" parent="." instance=ExtResource("2_cxrkf")]
+sprite_frames = SubResource("SpriteFrames_uoiim")
+animation = &"Idle"
 
 [node name="ParticleManager" parent="." node_paths=PackedStringArray("left_thrusters", "right_thrusters") instance=ExtResource("2_2ux3v")]
 left_thrusters = [NodePath("LeftThruster")]
 right_thrusters = [NodePath("RightThruster")]
 
 [node name="LeftThruster" type="GPUParticles2D" parent="ParticleManager"]
-position = Vector2(-4.5, -3.5)
+position = Vector2(-26, -12)
 rotation = 1.5708
 emitting = false
-amount = 100
+amount = 200
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
 lifetime = 3.0
 speed_scale = 2.0
+trail_lifetime = 3.0
+trail_sections = 2
+trail_section_subdivisions = 1
 
 [node name="RightThruster" type="GPUParticles2D" parent="ParticleManager"]
-position = Vector2(-4.5, 3.5)
+position = Vector2(-26, 12)
 rotation = 1.5708
 emitting = false
-amount = 100
+amount = 200
 process_material = SubResource("ParticleProcessMaterial_wcsmv")
 texture = ExtResource("1_7bk6h")
 lifetime = 3.0
@@ -94,17 +184,12 @@ speed_scale = 2.0
 
 [node name="ProjectileManager" parent="." instance=ExtResource("5_qn44e")]
 spawn_projectile = ExtResource("6_dl16m")
-spawn_spread_range = 10.0
+spawn_spread_range = 79.0
 spawn_count = 2
 projectile_damage = 10.0
 projectile_speed = 1200.0
 
-[node name="LeftCannon" type="Marker2D" parent="ProjectileManager"]
-position = Vector2(2, -4)
+[node name="CentralCannon" type="Marker2D" parent="ProjectileManager"]
+position = Vector2(35, 0)
 
-[node name="RightCannon" type="Marker2D" parent="ProjectileManager"]
-position = Vector2(2, 4)
-
-[node name="CooldownComponent" parent="." node_paths=PackedStringArray("projectile_manager") instance=ExtResource("7_rxt25")]
-wait_time = 0.25
-projectile_manager = NodePath("../ProjectileManager")
+[connection signal="attacked" from="AnimatedSpriteComponent" to="ProjectileManager" method="fire"]

@@ -8,6 +8,7 @@ extends Node2D
 @export_group("Projectile Stats", "projectile_")
 @export var projectile_damage: float
 @export var projectile_speed: float
+@export var projectile_pierce: int
 
 
 func fire() -> void:
@@ -27,7 +28,7 @@ func fire() -> void:
 				var rotation_added: float = spawn_rotation_range / (spawn_count - 1)
 				projectile_rotation += rotation_added * i - start_rotation_point
 				
-				if i >= spawn_count / 2:
+				if i >= spawn_count / 2.0:
 					projectile_instance.scale.y *= -1
 			
 			projectile_instance.position = projectile_position
@@ -35,5 +36,8 @@ func fire() -> void:
 			
 			projectile_instance.damage = projectile_damage
 			projectile_instance.speed = projectile_speed
+			projectile_instance.pierce = projectile_pierce
+			
+			projectile_instance.z_index = -5
 			
 			get_tree().root.add_child(projectile_instance)

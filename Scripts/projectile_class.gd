@@ -3,6 +3,7 @@ class_name Projectile
 
 var damage: float
 var speed: float
+var pierce: int
 
 
 func _physics_process(_delta: float) -> void:
@@ -18,4 +19,6 @@ func _physics_process(_delta: float) -> void:
 func hit(hit_object: KinematicCollision2D) -> void:
 	# Make object hit take damage.
 	hit_object.get_collider().hit(damage)
-	queue_free()
+	pierce -= 1
+	if pierce <= 0:
+		queue_free()
