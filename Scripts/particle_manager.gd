@@ -2,6 +2,7 @@ extends Node2D
 
 @export var left_thrusters: Array[GPUParticles2D]
 @export var right_thrusters: Array[GPUParticles2D]
+@export var cannons: Array[GPUParticles2D]
 var moving: bool = false
 
 
@@ -32,3 +33,8 @@ func thruster_off() -> void:
 		for thruster: GPUParticles2D in left_thrusters + right_thrusters:
 			thruster.emitting = false
 	moving = false
+
+
+func attack() -> void:
+	for cannon: GPUParticles2D in cannons:
+		cannon.emitting = true

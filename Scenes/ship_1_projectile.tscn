@@ -1,14 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://34hygk8ll80c"]
 
 [ext_resource type="Script" path="res://Scripts/projectile_class.gd" id="1_472jk"]
-[ext_resource type="Texture2D" uid="uid://6y8ld0rpgs5p" path="res://Art/Ship1Projectile.png" id="1_tfy8y"]
-[ext_resource type="PackedScene" uid="uid://g8ticbfowvxm" path="res://Scenes/Components/destroy_off_screen_component.tscn" id="3_n1l5o"]
+[ext_resource type="Texture2D" uid="uid://bdkyv217oyh0f" path="res://Art/Ship1Projectile.png" id="1_tfy8y"]
+[ext_resource type="PackedScene" uid="uid://bxg5jemotrr8d" path="res://Scenes/Components/fade_out_component.tscn" id="3_jrnae"]
 
 [node name="Ship1Projectile" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 script = ExtResource("1_472jk")
 
 [node name="Ship1Projectile" type="Sprite2D" parent="."]
+position = Vector2(625, 0)
 texture = ExtResource("1_tfy8y")
 
-[node name="DestroyOffScreenComponent" parent="." instance=ExtResource("3_n1l5o")]
+[node name="FadeOutComponent" parent="." instance=ExtResource("3_jrnae")]
+wait_time = 0.2

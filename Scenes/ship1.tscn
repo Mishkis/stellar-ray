@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=40 format=3 uid="uid://k074hfbpr7pq"]
 
 [ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
 [ext_resource type="Script" path="res://Scripts/ship1.gd" id="1_813mn"]
@@ -143,21 +143,51 @@ color = Color(0.956863, 0.364706, 0.454902, 1)
 alpha_curve = SubResource("CurveTexture_pkqki")
 hue_variation_max = 0.2
 
+[sub_resource type="Curve" id="Curve_vspvt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_177ke"]
+curve = SubResource("Curve_vspvt")
+
+[sub_resource type="Curve" id="Curve_ccaot"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v1fqh"]
+curve = SubResource("Curve_ccaot")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xvgk0"]
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.0
+spread = 75.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_v1fqh")
+color = Color(0.388235, 0.607843, 1, 1)
+alpha_curve = SubResource("CurveTexture_177ke")
+hue_variation_min = -0.05
+
 [node name="Ship" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_813mn")
 speed = 600.0
 rotation_speed = 5.0
-hard_stop_distance = 40.0
+hard_stop_distance = 45.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSpriteComponent" parent="." instance=ExtResource("2_cxrkf")]
 sprite_frames = SubResource("SpriteFrames_uoiim")
 animation = &"Idle"
 
-[node name="ParticleManager" parent="." node_paths=PackedStringArray("left_thrusters", "right_thrusters") instance=ExtResource("2_2ux3v")]
+[node name="ParticleManager" parent="." node_paths=PackedStringArray("left_thrusters", "right_thrusters", "cannons") instance=ExtResource("2_2ux3v")]
 left_thrusters = [NodePath("LeftThruster")]
 right_thrusters = [NodePath("RightThruster")]
+cannons = [NodePath("LeftCannon"), NodePath("RightCannon")]
 
 [node name="LeftThruster" type="GPUParticles2D" parent="ParticleManager"]
 position = Vector2(-26, -12)
@@ -182,14 +212,34 @@ texture = ExtResource("1_7bk6h")
 lifetime = 3.0
 speed_scale = 2.0
 
+[node name="LeftCannon" type="GPUParticles2D" parent="ParticleManager"]
+position = Vector2(33, -19.5)
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_xvgk0")
+texture = ExtResource("1_7bk6h")
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+
+[node name="RightCannon" type="GPUParticles2D" parent="ParticleManager"]
+position = Vector2(33, 19.5)
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_xvgk0")
+texture = ExtResource("1_7bk6h")
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+
 [node name="ProjectileManager" parent="." instance=ExtResource("5_qn44e")]
 spawn_projectile = ExtResource("6_dl16m")
-spawn_spread_range = 79.0
+spawn_spread_range = 78.0
 spawn_count = 2
 projectile_damage = 10.0
-projectile_speed = 1200.0
 
 [node name="CentralCannon" type="Marker2D" parent="ProjectileManager"]
 position = Vector2(35, 0)
 
+[connection signal="attacked" from="AnimatedSpriteComponent" to="ParticleManager" method="attack"]
 [connection signal="attacked" from="AnimatedSpriteComponent" to="ProjectileManager" method="fire"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://dxqtq401jhujj"
+path="res://.godot/imported/DamageNumberFont.png-18310d7c0d52108be5ab5e61297892c9.fontdata"
+
+[deps]
+
+source_file="res://Art/DamageNumberFont.png"
+dest_files=["res://.godot/imported/DamageNumberFont.png-18310d7c0d52108be5ab5e61297892c9.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57", "46")
+columns=11
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true
+scaling_mode=2
