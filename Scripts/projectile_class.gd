@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Projectile
 
-var damage: float
+var average_damage: float
 var speed: float
 var pierce: int
 
@@ -17,8 +17,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func hit(hit_object: KinematicCollision2D) -> void:
+	var damage: float = average_damage * randf_range(0.8, 1.2)
+	damage = roundf(damage * 10) / 10
+	
 	# Make object hit take damage.
-	hit_object.get_collider().hit(damage)
+	hit_object.get_collider().hit(average_damage, damage)
 	pierce -= 1
 	if pierce <= 0:
 		queue_free()

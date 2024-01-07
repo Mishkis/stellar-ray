@@ -2,7 +2,7 @@
 
 importer="font_data_image"
 type="FontFile"
-uid="uid://dxqtq401jhujj"
+uid="uid://ca51spevcvnmy"
 path="res://.godot/imported/DamageNumberFont.png-18310d7c0d52108be5ab5e61297892c9.fontdata"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/DamageNumberFont.png-18310d7c0d52108be5ab5e61
 
 [params]
 
-character_ranges=PackedStringArray("48-57", "46")
-columns=11
+character_ranges=PackedStringArray("48-57", "46", "33")
+columns=12
 rows=1
 image_margin=Rect2i(0, 0, 0, 0)
 character_margin=Rect2i(0, 0, 0, 0)

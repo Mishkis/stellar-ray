@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhvxgth357n07"]
+
+[ext_resource type="Script" path="res://Scripts/hitbox_component.gd" id="1_p30i4"]
+[ext_resource type="PackedScene" uid="uid://c3ie2s3uhb58q" path="res://Scenes/damage_number.tscn" id="2_8uqrx"]
+
+[node name="HitboxComponent" type="CollisionShape2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_p30i4")
+damage_number = ExtResource("2_8uqrx")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

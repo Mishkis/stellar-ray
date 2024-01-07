@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://k074hfbpr7pq"]
+[gd_scene load_steps=42 format=3 uid="uid://k074hfbpr7pq"]
 
 [ext_resource type="Texture2D" uid="uid://4d3s3yfx1jfp" path="res://Art/BaseParticle.png" id="1_7bk6h"]
 [ext_resource type="Script" path="res://Scripts/ship1.gd" id="1_813mn"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cpbxfxck15yro" path="res://Art/Ship1Reload/Ship1Reload15.png" id="17_0xghf"]
 [ext_resource type="Texture2D" uid="uid://ct5ka3876yqe2" path="res://Art/Ship1Reload/Ship1Reload16.png" id="18_jpoku"]
 [ext_resource type="Texture2D" uid="uid://behtx1osohrcp" path="res://Art/Ship1Reload/Ship1Reload17.png" id="19_q1eos"]
+[ext_resource type="PackedScene" uid="uid://bhvxgth357n07" path="res://Scenes/Components/hitbox_component.tscn" id="25_gtdkk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uoiim"]
 animations = [{
@@ -172,12 +173,17 @@ color = Color(0.388235, 0.607843, 1, 1)
 alpha_curve = SubResource("CurveTexture_177ke")
 hue_variation_min = -0.05
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2chf"]
+radius = 32.25
+height = 64.5
+
 [node name="Ship" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_813mn")
 speed = 600.0
 rotation_speed = 5.0
 hard_stop_distance = 45.0
+extra_distance_before_stopping = 50.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSpriteComponent" parent="." instance=ExtResource("2_cxrkf")]
@@ -240,6 +246,11 @@ projectile_damage = 10.0
 
 [node name="CentralCannon" type="Marker2D" parent="ProjectileManager"]
 position = Vector2(35, 0)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("25_gtdkk")]
+position = Vector2(-3.25, -0.25)
+shape = SubResource("CapsuleShape2D_n2chf")
+immunity_time = 1.0
 
 [connection signal="attacked" from="AnimatedSpriteComponent" to="ParticleManager" method="attack"]
 [connection signal="attacked" from="AnimatedSpriteComponent" to="ProjectileManager" method="fire"]

@@ -5,5 +5,3 @@
 [node name="CooldownComponent" type="Timer"]
 one_shot = true
 script = ExtResource("1_w1rid")
-
-[connection signal="timeout" from="." to="." method="_on_timeout"]

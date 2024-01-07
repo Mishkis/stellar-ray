@@ -34,7 +34,7 @@ func fire() -> void:
 			projectile_instance.position = projectile_position
 			projectile_instance.rotation = projectile_rotation
 			
-			projectile_instance.damage = projectile_damage
+			projectile_instance.average_damage = projectile_damage
 			projectile_instance.speed = projectile_speed
 			projectile_instance.pierce = projectile_pierce
 			

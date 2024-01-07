@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ie2s3uhb58q"]
+
+[ext_resource type="FontFile" uid="uid://ca51spevcvnmy" path="res://Art/DamageNumberFont.png" id="1_fc6r0"]
+[ext_resource type="PackedScene" uid="uid://bxg5jemotrr8d" path="res://Scenes/Components/fade_out_component.tscn" id="2_fa2w3"]
+
+[sub_resource type="Animation" id="Animation_adphl"]
+resource_name = "NumberGrow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(0.203064, 2.14355, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1.25, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0872665, -0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.210224, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -60)]
+}
+
+[sub_resource type="Animation" id="Animation_h6hb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_as43x"]
+_data = {
+"NumberGrow": SubResource("Animation_adphl"),
+"RESET": SubResource("Animation_h6hb6")
+}
+
+[node name="Main" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+
+[node name="AnimatedScale" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -60.0
+offset_bottom = -60.0
+
+[node name="Label" type="Label" parent="AnimatedScale"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -51.5
+offset_top = -20.0
+offset_right = 51.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_fc6r0")
+theme_override_font_sizes/font_size = 20
+text = "111"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedScale/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_as43x")
+}
+autoplay = "NumberGrow"
+
+[node name="FadeOutComponent" parent="AnimatedScale" instance=ExtResource("2_fa2w3")]
+wait_time = 2.0

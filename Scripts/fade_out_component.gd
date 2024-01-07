@@ -1,7 +1,7 @@
 extends Timer
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	get_parent().modulate.a = time_left / wait_time
 
 
